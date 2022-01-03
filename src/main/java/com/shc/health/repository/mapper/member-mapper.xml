@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Member">
+ 	<insert id="insert" parameterType="mdto">
+ 		insert into h_member(m_id, m_password, m_name, m_email, m_phone, m_home, m_home1, m_home2, m_filename)
+ 			values(#{m_id}, #{m_password}, #{m_name}, #{m_email}, #{m_phone}, #{m_home}, #{m_home1}, #{m_home2}, #{m_filename})
+ 	</insert>
+ 
+  		<select id="idDuplicate" parameterType="String" resultType="String">
+ 		select m_id from h_member where m_id=#{m_id}
+ 	</select>
+ 	
+ 	 	<select id="login" parameterType="mdto" resultType="mdto">
+ 		select * from h_member where  m_id=#{m_id} and m_password=#{m_password}
+ 	</select>
+ 	
+ 	 	<select id="mypage" parameterType="long" resultType="mdto">
+		select * from h_member where m_number=#{m_number}
+	</select>
+	
+	 	<select id="findAll" parameterType="mdto" resultType="mdto">
+ 		select * from h_member
+ 	</select>	
+ 
+ 	
+ 	 	<select id="delete" parameterType="long">
+ 	delete from h_member where m_number=#{m_number}
+ 	</select>
+ 	
+ 	 			<select id="findById" parameterType="long" resultType="mdto">
+ 		select * from h_member where m_number=#{m_number}
+ 	</select>
+ 	
+ 	 		<update id="updateFile" parameterType="mdto">
+		update h_member set m_email=#{m_email}, m_phone=#{m_phone}, m_filename=#{m_filename} where m_number=#{m_number}
+	</update>
+
+	<update id="update" parameterType="mdto">
+		update h_member set m_email=#{m_email}, m_phone=#{m_phone} where m_number=#{m_number}
+	</update>
+ 	
+ </mapper>

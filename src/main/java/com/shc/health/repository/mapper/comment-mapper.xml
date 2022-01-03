@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="Comment">
+  
+   	<insert id="save" parameterType="comment">
+		insert into h_comment (b_number,c_writer,c_contents,c_date)
+		values(#{b_number},#{c_writer},#{c_contents},now())
+ 	</insert>
+ 	
+ 	 	<select id="findAll" parameterType="long" resultType="comment">
+		select * from h_comment where b_number=#{b_number}
+	</select>
+ 	
+ 	<delete id="delete" parameterType="long">
+ 		delete from h_comment where c_number=#{c_number}
+ 	</delete>
+
+	<update id="update" parameterType="comment">
+		update h_comment set c_contents=#{c_contents} where c_number=#{c_number}
+	</update>
+	
+	<select id="detail" parameterType="long" resultType="comment">
+		select * from h_comment where c_number=#{c_number}
+	</select>
+	
+  </mapper>
